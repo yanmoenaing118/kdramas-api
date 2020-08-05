@@ -35,6 +35,7 @@ const dramaSchema = mongoose.Schema(
       required: [true, "A dramas show must have a lead actress"],
       trim: true,
     },
+    genre: [String],
     noepisodes: Number,
     releasedYear: {
       type: Date,

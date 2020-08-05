@@ -33,6 +33,10 @@ const userSchema = mongoose.Schema({
       message: "Incorrect passwords",
     },
   },
+  photo: {
+    type: String,
+    default: "default.jpg",
+  },
   role: {
     type: String,
     default: "user",

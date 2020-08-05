@@ -13,6 +13,11 @@ app.use(express.static(`${__dirname}/public`));
 app.set("view engine", "pug");
 app.set("views", `${__dirname}/views`);
 
+app.use((req, res, next) => {
+  console.log(req.headers.cookie);
+  next();
+});
+
 // view
 app.use("/", viewRouter);
 

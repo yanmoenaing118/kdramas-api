@@ -14,6 +14,12 @@ header.header
             a(href="/").navbar__link Doc
          li.navbar__item
             a(href="/").navbar__link About
-   .header__auth
-      a(href="/login").btn--login#login Log in
-      a(href="/signup").btn--login#signup Sign up
+   -if(user)
+      .header__user
+         div.header__user-photoBox
+            img( src="/img/assets/user-1.jpg" alt="Profile picture" class="header__user-picture")
+         .header__user-name Yan
+   -else
+      .header__auth
+         a(href="/login").btn--login#login Log in
+         a(href="/signup").btn--login#signup Sign up

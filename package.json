@@ -5,11 +5,14 @@
   "main": "app.js",
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "Yan Moe Naing",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.10.4",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -18,5 +21,8 @@
     "pug": "^3.0.0",
     "slugify": "^1.4.4",
     "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
   }
 }
