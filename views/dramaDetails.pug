@@ -1,0 +1,50 @@
+extends base
+
+mixin infoBoxBody(icon, lab, desc )
+   div( class="info-box__body")
+      div( class="info-box__body-icon")
+         svg( class="info-box__icon")
+            use( xlink:href=`/img/assets/sprite.svg#icon-${icon}`)
+      div( class="info-box__body-label")= lab
+      div( class="info-box__body-desc")= desc
+
+block content
+   main.main
+      section.section-details
+         img(src=`/img/posters/${drama.poster}` alt="" class="section-details__img")
+         div( class="section-details__drama")
+            div( class="info-box" )
+               div( class="info-box__title")
+                  h1( class="primary-heading")= drama.title
+               +infoBoxBody("heart", "Lead Actor", `${drama.leadActor}`)
+               +infoBoxBody("heart", "Lead Actress", `${drama.leadActress}`)
+               +infoBoxBody("book", "Scripwriter", `${drama.scriptWriter}`)
+               +infoBoxBody("video", "Director", `${drama.director}`)
+               +infoBoxBody("blackboard", "Original network", `${drama.distributor}`)
+               +infoBoxBody("play", "Genre", "Romance.Drama")
+               +infoBoxBody("plus", "IMDB ratings", `${drama.imdbRating} / 10`)
+               +infoBoxBody("home", "Country of origin", `${drama.countryOfOrigin}`)
+
+      section.section-description
+         .drama-description
+            ul.drama-description__nav
+               li( class="drama-description__nav-item")
+                  a(href="#" class="drama-description__nav-link")
+                     span Description
+               li( class="drama-description__nav-item")
+                  a(href="#" class="drama-description__nav-link")
+                     span View Comments
+            p.drama-description__about Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            
+            p.drama-description__about Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+           
+            p.drama-description__about Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+         
+         div.drama-images
+            img(src=`/img/thumbs/${drama.images[0]}` alt="" class="drama-images__img") 
+            img(src=`/img/thumbs/${drama.images[1]}` alt="" class="drama-images__img") 
+            img(src=`/img/thumbs/${drama.images[2]}` alt="" class="drama-images__img") 
+             
+   
+
+   

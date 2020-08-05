@@ -1,0 +1,8 @@
+{
+    "name": "",
+    "yearActive": "",
+    "born": "",
+    "birthplace": "",
+    "photo": "",
+    "dramas": ["array of drama IDs in my db"]
+}

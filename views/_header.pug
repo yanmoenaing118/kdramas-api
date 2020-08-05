@@ -1,0 +1,19 @@
+header.header
+   .header__logo-box
+      img(src="/img/assets/logo-1.png", alt="Kdramas Addict").header__logo-img
+   .header__search-box
+      form(action="/", autocomplete="off").search
+         input(type="text", name="search", placeholder="search dramas").search__input
+   .header__nav
+      ul.navbar
+         li.navbar__item
+            a(href="/").navbar__link All Dramas
+         li.navbar__item
+            a(href="/").navbar__link API
+         li.navbar__item
+            a(href="/").navbar__link Doc
+         li.navbar__item
+            a(href="/").navbar__link About
+   .header__auth
+      a(href="/login").btn--login#login Log in
+      a(href="/signup").btn--login#signup Sign up

@@ -1,0 +1,24 @@
+extends base
+
+block content
+   main.main
+      form(autocomplete="off").form.form-auth
+         h2.form-heading Sign up
+         .form__group
+            label(for="name" class="form__label") Name
+            input( type="text" class="form__input" id="name" placeholder="your name")
+         .form__group
+            label(for="email" class="form__label") Email
+            input( type="email" class="form__input" id="email" placeholder="name@example.com")
+         .form__group
+            label(for="psw" class="form__label") Password
+            input( type="password" class="form__input" id="psw" placeholder="*****************")
+         .form__group
+            label(for="psw" class="form__label") Retype Password
+            input( type="password" class="form__input" id="psw" placeholder="*****************")
+         .form__group
+            .form__submit
+               button.btn.btn-form__button--save submit
+      .switch-ls 
+         p(class="switch-ls__content") Already have an account? &nbsp;
+            a(href="/login") Log in here!

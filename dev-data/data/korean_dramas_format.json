@@ -1,0 +1,30 @@
+[
+  {
+    "title": "",
+    "genre": [],
+    "scriptWriter": "",
+    "director": "",
+    "distributor": "",
+    "leadActor": "",
+    "leadActress": "",
+    "mainCasts": {
+      "actors": ["arrays of actors in my db"],
+      "actresses": ["arrays of actress in my db"]
+    },
+    "supportingCasts": {
+      "actors": [],
+      "actresses": []
+    },
+    "noepisodes": "",
+    "firstReleasedDate": "",
+    "finalReleasedDate": "",
+    "releasedYear": "",
+    "imdbRating": "",
+    "percentLiked": "",
+    "audienceRating": "",
+    "countryOfOrigin": "",
+    "openingTitleSong": "",
+    "poster": "",
+    "summary": ""
+  }
+]
