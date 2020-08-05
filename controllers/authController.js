@@ -38,9 +38,10 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
+  console.log(req.body);
   // check if email and password are provided
   if (!req.body.email || !req.body.password) {
-    return next(new AppError("Email and password are required!", 400));
+    return next(new AppError("Email and password are required!", 500));
   }
   // check if the user exists and correct password
   const user = await User.findOne({ email: req.body.email }).select(
@@ -56,14 +57,15 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
   // check if the authorization header is present
-
   let token;
-
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
+  } else if (req.headers.cookie) {
+    token = req.headers.cookie.split("=")[1];
+    console.log("The token is ", token);
   }
 
   if (!token) {
@@ -119,3 +121,32 @@ exports.updateMyPassword = catchAsync(async (req, res, next) => {
   await user.save();
   createTokenAndSend(res, user);
 });
+
+exports.isLoggedIn = async (req, res, next) => {
+  // check if the authorization header is present
+  let token;
+
+  if (req.headers.cookie) {
+    token = req.headers.cookie.split("=")[1];
+    console.log("The token is ", token);
+  }
+
+  if (!token) {
+    return next();
+  }
+  // verify the token with secrete key
+  const decoded = await promisify(jwt.verify)(
+    token,
+    process.env.JWT_SECRETE_KEY
+  );
+  const user = await User.findById(decoded.id);
+
+  if (!user) {
+    return next();
+  }
+  req.user = user;
+
+  res.locals.user = user;
+
+  next();
+};
