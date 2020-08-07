@@ -12,8 +12,9 @@ block content
                            img( src=`img/posters/${drama.poster}` alt=`${drama.title}` ).card__img
                         .card__title= drama.title
                         .card__info
-                           .card__genre= drama.genre.join(".")
-                           .card__rating 7.8
+                           -const genre = drama.genre.length >= 2 ? drama.genre[0] + " " + drama.genre[1] : drama.genre[0] 
+                           .card__genre= genre
+                           .card__rating= drama.imdbRating
          .paginate
             ul.paginate__list
                li(class="paginate__item")

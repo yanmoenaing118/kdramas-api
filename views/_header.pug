@@ -17,8 +17,8 @@ header.header
    -if(user)
       .header__user
          div.header__user-photoBox
-            img( src="/img/assets/user-1.jpg" alt="Profile picture" class="header__user-picture")
-         .header__user-name Yan
+            img( src=`/img/users/${user.photo}` alt="Profile picture" class="header__user-picture")
+         .header__user-name= user.name.split(" ")[0]
    -else
       .header__auth
          a(href="/login").btn--login#login Log in

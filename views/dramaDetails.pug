@@ -21,24 +21,20 @@ block content
                +infoBoxBody("book", "Scripwriter", `${drama.scriptWriter}`)
                +infoBoxBody("video", "Director", `${drama.director}`)
                +infoBoxBody("blackboard", "Original network", `${drama.distributor}`)
-               +infoBoxBody("play", "Genre", "Romance.Drama")
+               +infoBoxBody("play", "Genre", `${drama.genre.join(".")}`)
                +infoBoxBody("plus", "IMDB ratings", `${drama.imdbRating} / 10`)
                +infoBoxBody("home", "Country of origin", `${drama.countryOfOrigin}`)
 
       section.section-description
          .drama-description
-            ul.drama-description__nav
-               li( class="drama-description__nav-item")
-                  a(href="#" class="drama-description__nav-link")
-                     span Description
-               li( class="drama-description__nav-item")
-                  a(href="#" class="drama-description__nav-link")
-                     span View Comments
-            p.drama-description__about Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            
-            p.drama-description__about Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-           
-            p.drama-description__about Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            h1 Brief About #{`${drama.title}`}
+            .drama-description__about
+            -const paras = drama.synopsis.split('\n')
+               each para in paras
+                  p.drama-description__about= para
+
+
+               
          
          div.drama-images
             img(src=`/img/thumbs/${drama.images[0]}` alt="" class="drama-images__img") 

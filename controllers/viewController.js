@@ -1,5 +1,6 @@
 const Drama = require("./../models/dramaModel");
 const catchAsync = require("./../utils/catchAsync");
+const User = require("../models/userModel");
 
 exports.getAllDramas = catchAsync(async (req, res, next) => {
   const dramas = await Drama.find();
@@ -26,3 +27,10 @@ exports.getSignupForm = (req, res, next) => {
     title: "Log in Form",
   });
 };
+
+exports.getMe = catchAsync(async (req, res, next) => {
+  const me = await User.findById(req.user._id);
+  res.status(200).render("userAccount", {
+    user: me,
+  });
+});
