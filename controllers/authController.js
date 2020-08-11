@@ -136,10 +136,12 @@ exports.isLoggedIn = async (req, res, next) => {
     return next();
   }
   // verify the token with secrete key
-  const decoded = await promisify(jwt.verify)(
-    token,
-    process.env.JWT_SECRETE_KEY
-  );
+  let decoded;
+  try {
+    decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRETE_KEY);
+  } catch (error) {
+    next();
+  }
   const user = await User.findById(decoded.id);
 
   if (!user) {
@@ -150,4 +152,14 @@ exports.isLoggedIn = async (req, res, next) => {
   res.locals.user = user;
 
   next();
+};
+
+exports.logout = (req, res, next) => {
+  res.cookie("jwt", "logout", {
+    expires: new Date(Date.now() + 10 * 60 * 1000),
+  });
+  res.status(200).json({
+    status: "success",
+    message: "The user has logged out",
+  });
 };

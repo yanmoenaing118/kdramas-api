@@ -1,12 +1,13 @@
 import "@babel/polyfill";
 
-import { login, signup } from "./auth";
+import { login, signup, logout } from "./auth";
 import { postComment } from "./comment";
 
 const loginBtn = document.getElementById("loginBtn");
 const singupBtn = document.getElementById("singupBtn");
 const userAccBtn = document.querySelector(".header__user");
 const postCmtBtn = document.querySelector(".btn--comment");
+const logoutBtn = document.getElementById("logoutBtn");
 
 if (loginBtn) {
   loginBtn.addEventListener("click", (e) => {
@@ -46,4 +47,10 @@ if (postCmtBtn) {
     postComment(cmt, e.target.value);
   });
 }
-console.log("Hello from parcel");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    logout();
+  });
+}

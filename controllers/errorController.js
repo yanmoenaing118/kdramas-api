@@ -37,7 +37,8 @@ const handleInvalidIdDB = (err) => {
 };
 
 const handleInvalidInputDB = (err) => {
-  const message = `${err.message.split(": ")[2]}`;
+  const message = `${err.message.split(":")[2]}`;
+  console.log(message);
   return new AppError(message, 400);
 };
 

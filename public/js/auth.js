@@ -1,3 +1,6 @@
+import "@babel/polyfill";
+import { showAuthErr } from "./utils";
+
 export const login = (email, password) => {
   console.log(email, password);
   fetch("http://localhost:9000/api/v1/users/login", {
@@ -10,9 +13,16 @@ export const login = (email, password) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      window.setTimeout(() => {
-        window.location.assign("/dramas");
-      }, 1000);
+      if (data.status === "success") {
+        window.setTimeout(() => {
+          window.location.assign("/dramas");
+        }, 1000);
+      } else {
+        showAuthErr(data.message);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
@@ -27,12 +37,29 @@ export const signup = (name, email, password, passwordConfirm) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      window.setTimeout(() => {
-        window.location.assign("/dramas");
-      }, 1000);
+      if (data.status === "success") {
+        window.setTimeout(() => {
+          window.location.assign("/dramas");
+        }, 1000);
+      } else {
+        showAuthErr(data.message);
+      }
     })
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const logout = () => {
+  fetch("http://localhost:9000/api/v1/users/logout")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      if (data.status === "success") {
+        window.setTimeout(() => {
+          window.location.assign("/");
+        }, 1000);
+      }
+    })
+    .catch((err) => console.log(err));
 };

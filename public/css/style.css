@@ -20,7 +20,7 @@ body {
   box-sizing: border-box;
   font-size: 1.6rem;
   padding: 3rem 0;
-  color: #777;
+  color: #444;
   background-image: linear-gradient(to bottom right, #9be15d 0%, #00e3ae 100%);
 }
 
@@ -30,9 +30,14 @@ body {
   font-size: 3.5rem;
 }
 
+.title-bar {
+  text-transform: uppercase;
+  padding: 1rem 0;
+}
+
 .header {
   box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
-  max-width: 60%;
+  max-width: 65%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -103,7 +108,7 @@ body {
 
 .main {
   border-radius: 5px;
-  max-width: 60%;
+  max-width: 65%;
   margin: 0 auto;
   background-color: #fff;
   margin-top: 3rem;
@@ -174,6 +179,7 @@ body {
   padding: 3.6rem 3rem;
   border-bottom: 2px solid #ccc;
   box-shadow: 0 0.1rem 0.2rem #ddd;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,6 +187,33 @@ body {
 
 .section-setting {
   padding: 2rem 0;
+  margin-left: auto;
+  flex: 0 0 60%;
+  padding-left: 3rem;
+}
+
+.user-profile {
+  display: flex;
+}
+
+.section-error {
+  padding: 20rem;
+  position: relative;
+}
+
+.social-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.acc-setting {
+  position: relative;
+}
+
+.psw-setting {
+  position: relative;
+  margin-top: 6.5rem;
 }
 
 .navbar {
@@ -285,14 +318,14 @@ body {
 
 .btn {
   padding: 1.5rem 3rem;
-  background-color: #fff;
+  background-image: linear-gradient(to bottom right, #9be15d 0%, #00e3ae 100%);
   cursor: pointer;
   border: none;
   box-shadow: 0 0.2rem 0.5rem #ddd;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.7rem;
-  color: purple;
+  color: #fff;
   display: inline-block;
 }
 .btn:focus {
@@ -305,11 +338,11 @@ body {
 .btn--login {
   text-decoration: none;
   text-transform: uppercase;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
+  padding: 1rem 1.5rem;
+  background-image: linear-gradient(to bottom right, #9be15d 0%, #00e3ae 100%);
   cursor: pointer;
   margin-left: 0.5rem;
-  color: inherit;
+  color: #fff;
   transition: all 0.2s;
 }
 .btn--login:hover {
@@ -319,6 +352,15 @@ body {
 .btn--comment {
   padding: 1rem 2rem;
   margin-top: -1rem;
+  position: absolute;
+  right: 0;
+}
+.btn--logout {
+  width: 150px;
+  margin-top: 1rem;
+}
+
+.btn-form__button--save {
   position: absolute;
   right: 0;
 }
@@ -514,7 +556,7 @@ body {
   height: 3.4rem;
 }
 .social-acc__icon--fb {
-  fill: blue;
+  fill: #00ff37;
 }
 .social-acc__label {
   height: 100%;
@@ -547,6 +589,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
+  backface-visibility: hidden;
 }
 .form__group:not(:last-child) {
   margin-bottom: 2rem;
@@ -565,6 +608,7 @@ body {
   border: none;
   background-color: rgba(225, 225, 225, 0.3);
   transition: all 0.3s;
+  border-bottom: 0.5px solid transparent;
 }
 .form__input:focus {
   outline: none;
@@ -576,6 +620,7 @@ body {
   font-weight: 600;
 }
 .form-setting {
+  width: 100%;
   padding: 1.6rem 0;
 }
 .form-setting:not(:last-child) {
@@ -677,15 +722,83 @@ body {
 .comment-box {
   width: 100%;
   margin-bottom: 7rem;
+  position: relative;
 }
 .comment-input {
-  resize: none;
   padding: 1.6rem;
   color: inherit;
   font-family: inherit;
+  resize: none;
 }
 
 .avatar {
   width: 4.5rem;
   border-radius: 5px;
+}
+
+.choose-file-btn {
+  padding: 1rem 2.5rem;
+  background-image: linear-gradient(to right bottom, #9be15d 0%, #00ccee 100%);
+  width: 200px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  z-index: 2000;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+#photo {
+  position: absolute;
+  font-size: inherit;
+  z-index: 1000;
+  left: 99px;
+  top: 0.8rem;
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+.error__status {
+  text-transform: uppercase;
+}
+.error__msg {
+  font-weight: 800;
+  font-size: 3rem;
+}
+.error__auth {
+  position: absolute;
+  right: 3rem;
+  top: 1.95rem;
+  color: #ff9100;
+}
+.error__cmt {
+  position: absolute;
+  right: 3rem;
+  color: #ff9100;
+}
+.error__updatePsw {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  color: #fff;
+  background-color: #df3535;
+  padding: 1rem 1.55rem;
+}
+.error__updateData {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  color: #fff;
+  background-color: #df3535;
+  padding: 1rem 1.55rem;
 }

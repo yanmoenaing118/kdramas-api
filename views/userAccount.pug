@@ -1,8 +1,54 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title All Dramas
-    body
-    
+extends base 
+
+block content
+    main.main
+        .user-profile
+            .social-cover
+                section.section-cover
+                    .profile-cover
+                        img( src=`/img/users/${user.photo}` alt="" class="profile-cover__photo")
+                section.section-social 
+                    .social-acc
+                        svg.social-acc__icon.social-acc__icon--fb
+                            use(xlink:href="/img/assets/sprite.svg#icon-facebook2")
+                    .social-acc
+                        svg.social-acc__icon.social-acc__icon--fb
+                            use(xlink:href="/img/assets/sprite.svg#icon-twitter")
+                    .social-acc
+                        svg.social-acc__icon.social-acc__icon--fb
+                            use(xlink:href="/img/assets/sprite.svg#icon-instagram")
+                button.btn.btn--logout#logoutBtn logout
+            
+            section.section-setting
+                .acc-setting
+                    .title-bar
+                        h2.title-bar__heading Account Settings
+                    
+                    form.form.form-setting
+                        .form__group
+                            label(for="name").form__label Name
+                            input( type="text" class="form__input" id="name" placeholder=`${user.name}`)
+                        .form__group
+                            label(for="email").form__label Email
+                            input( type="email" class="form__input" id="email" placeholder=`${user.email}`)
+                        .form__group
+                            label(for="photo").choose-file-btn Change Photo
+                            input( type="file" id="photo" )
+                        
+                        .form__group
+                            button(class="btn btn-form__button--save") save changes
+                .psw-setting
+                    .title-bar
+                        h2.title-bar__heading update password
+                    form.form.form-setting
+                        .form__group
+                            label(for="cpsw").form__label Current Password
+                            input( type="password" class="form__input" id="cpsw" )
+                        .form__group
+                            label(for="npsw").form__label New Password
+                            input( type="password" class="form__input" id="npsw" )
+                        .form__group
+                            label(for="cnpsw").form__label Reenter Password
+                            input( type="password" class="form__input" id="cnpsw" )
+                        .form__group
+                            button(class="btn btn-form__button--save") save password
