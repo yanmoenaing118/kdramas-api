@@ -27,20 +27,38 @@ block content
 
       section.section-description
          .drama-description
-            h1 Brief About #{`${drama.title}`}
-            .drama-description__about
             -const paras = drama.synopsis.split('\n')
+            .drama-description__about
                each para in paras
-                  p.drama-description__about= para
-
-
-               
-         
+                  p= para
+            .drama-comments
+               .comment-box
+                  form.comment-form
+                     .form__group
+                        label.form__label(for="comment") Write a comment
+                        textarea(name="comment", cols="30", rows="5" class="comment-input" false)
+                     .form__group
+                        button(value=`${drama._id}`).btn.btn--comment post comment
+               each cmt in comments
+                  .comment
+                     .comment__avatar
+                        a(href="/users/23535")
+                           img(src=`/img/users/${cmt.user.photo}`, alt="avatar" class="avatar")
+                     .comment__details
+                        .comment__ut 
+                           a(href="/users/a325").comment__author= cmt.user.name
+                           .comment__time Today 6:00 PM
+                        .comment__content= cmt.comment
+                        .comment__react
+                           button.comment__react-btn
+                              svg.comment__react-icon
+                                 use( xlink:href="/img/assets/sprite.svg#icon-heart")
+                           .comment__react-count= cmt.likes         
          div.drama-images
-            img(src=`/img/thumbs/${drama.images[0]}` alt="" class="drama-images__img") 
-            img(src=`/img/thumbs/${drama.images[1]}` alt="" class="drama-images__img") 
-            img(src=`/img/thumbs/${drama.images[2]}` alt="" class="drama-images__img") 
-            img(src=`/img/thumbs/${drama.images[3]}` alt="" class="drama-images__img") 
+            img(src=`/img/thumbs/${drama.images[4]}` alt="" class="drama-images__img") 
+            img(src=`/img/thumbs/${drama.images[5]}` alt="" class="drama-images__img") 
+            img(src=`/img/thumbs/${drama.images[6]}` alt="" class="drama-images__img") 
+            img(src=`/img/thumbs/${drama.images[7]}` alt="" class="drama-images__img") 
              
    
 

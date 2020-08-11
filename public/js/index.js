@@ -1,10 +1,12 @@
 import "@babel/polyfill";
 
 import { login, signup } from "./auth";
+import { postComment } from "./comment";
 
 const loginBtn = document.getElementById("loginBtn");
 const singupBtn = document.getElementById("singupBtn");
 const userAccBtn = document.querySelector(".header__user");
+const postCmtBtn = document.querySelector(".btn--comment");
 
 if (loginBtn) {
   loginBtn.addEventListener("click", (e) => {
@@ -31,6 +33,17 @@ if (singupBtn) {
     const pswCon = document.getElementById("pswCon").value;
 
     signup(name, email, psw, pswCon);
+  });
+}
+
+if (postCmtBtn) {
+  postCmtBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const cmt = document.querySelector(".comment-input").value;
+
+    // console.log(cmt, e.target.value);
+
+    postComment(cmt, e.target.value);
   });
 }
 console.log("Hello from parcel");

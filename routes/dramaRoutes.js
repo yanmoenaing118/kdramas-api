@@ -6,7 +6,7 @@ const commentRouter = require("./../routes/commentRoutes");
 const dramaController = require("./../controllers/dramaController");
 const authController = require("./../controllers/authController");
 
-router.use("/:dramaId/comments", commentRouter);
+router.use("/:dramaId/comments", authController.protect, commentRouter);
 
 router
   .route("/")

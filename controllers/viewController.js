@@ -1,4 +1,5 @@
 const Drama = require("./../models/dramaModel");
+const Comment = require("./../models/commentModel");
 const catchAsync = require("./../utils/catchAsync");
 const User = require("../models/userModel");
 
@@ -11,8 +12,13 @@ exports.getAllDramas = catchAsync(async (req, res, next) => {
 
 exports.getDramaDetails = catchAsync(async (req, res, next) => {
   const drama = await Drama.findOne({ slug: req.params.slug });
+  const comments = await Comment.find({ drama: drama._id }).populate({
+    path: "user",
+  });
+
   res.status(200).render("dramaDetails", {
     drama,
+    comments,
   });
 });
 
