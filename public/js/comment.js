@@ -1,3 +1,6 @@
+import "@babel/polyfill";
+import { showCmtErr } from "./utils";
+
 const createNewComment = (cmt, cmter) => {
   const cmtContainer = document.querySelector(".drama-comments");
   const newCmt = `<div class="comment">
@@ -29,23 +32,27 @@ const createNewComment = (cmt, cmter) => {
 
 export const postComment = (cmt, drama) => {
   console.log(cmt, drama);
-  let comment = null;
-  fetch(`http://localhost:9000/api/v1/dramas/${drama}/comments`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ comment: cmt }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      comment = { ...data.data.data };
-      return fetch(`http://localhost:9000/api/v1/users/getMe`);
+  if (cmt.length > 0) {
+    let comment = null;
+    fetch(`http://localhost:9000/api/v1/dramas/${drama}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comment: cmt }),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      const cmter = { ...data.data.data };
-      createNewComment(comment, cmter);
-    })
-    .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .then((data) => {
+        comment = { ...data.data.data };
+        return fetch(`http://localhost:9000/api/v1/users/getMe`);
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        const cmter = { ...data.data.data };
+        createNewComment(comment, cmter);
+      })
+      .catch((err) => console.log(err));
+  } else {
+    showCmtErr();
+  }
 };

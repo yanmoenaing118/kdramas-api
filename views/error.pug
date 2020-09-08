@@ -1,0 +1,9 @@
+extends base
+
+
+block content 
+    main.main
+        section.section-error
+            .error
+                h2.error__status Oops! #{error.status} (^|^)
+                h3.error__msg= error.message

@@ -1,7 +1,12 @@
 const AppError = require("./../utils/appError");
 
-const sendErrDev = (err, res) => {
-  console.log(err);
+const sendErrDev = (err, req, res) => {
+  if (!req.originalUrl.startsWith("/api")) {
+    return res.status(err.statusCode).render("error", {
+      error: err,
+    });
+  }
+
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
@@ -10,7 +15,16 @@ const sendErrDev = (err, res) => {
   });
 };
 
-const sendErrProd = (err, res) => {
+const sendErrProd = (err, req, res) => {
+  if (!req.originalUrl.startsWith("/api")) {
+    return res.status(err.statusCode).render("error", {
+      error: {
+        status: err.status,
+        message: err.message,
+      },
+    });
+  }
+
   console.log("sendErrProd", err.name);
   if (err.isOperational) {
     res.status(err.statusCode).json({
@@ -51,7 +65,7 @@ const handleJsonWebTokenError = (err) =>
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 400;
   if (process.env.NODE_ENV === "development") {
-    sendErrDev(err, res);
+    sendErrDev(err, req, res);
   } else {
     let error = { ...err };
     if (error.code === 11000) error = handleDuplicateKeyErrorDB(err);
@@ -60,6 +74,6 @@ module.exports = (err, req, res, next) => {
     if (err.name === "TokenExpiredError") error = handleJWTExpired(err);
     if (err.name === "JsonWebTokenError") error = handleJsonWebTokenError(err);
     // console.log( error );
-    sendErrProd(error, res);
+    sendErrProd(error, req, res);
   }
 };

@@ -2,6 +2,7 @@ const Drama = require("./../models/dramaModel");
 const Comment = require("./../models/commentModel");
 const catchAsync = require("./../utils/catchAsync");
 const User = require("../models/userModel");
+const AppError = require("./../utils/appError");
 
 exports.getAllDramas = catchAsync(async (req, res, next) => {
   const dramas = await Drama.find();
@@ -12,6 +13,16 @@ exports.getAllDramas = catchAsync(async (req, res, next) => {
 
 exports.getDramaDetails = catchAsync(async (req, res, next) => {
   const drama = await Drama.findOne({ slug: req.params.slug });
+  if (!drama) {
+    return next(
+      new AppError(
+        `There is no drama with this ${req.params.slug
+          .split("-")
+          .join(" ")} name!`,
+        404
+      )
+    );
+  }
   const comments = await Comment.find({ drama: drama._id }).populate({
     path: "user",
   });
