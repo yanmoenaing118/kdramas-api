@@ -14,7 +14,7 @@ console.log(process.env.PORT);
 console.log(process.env.DATABASE_LOCAL);
 
 mongoose
-  .connect(process.env.DATABASE_LOCAL, {
+  .connect(process.env.DATABASE, {
     useFindAndModify: false,
     useNewUrlParser: true,
     useCreateIndex: true,
