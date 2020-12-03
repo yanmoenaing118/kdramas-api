@@ -13,7 +13,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    "‘Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "*",
   })
 );
 
@@ -22,19 +22,8 @@ app.use(express.static(`${__dirname}/public`));
 app.set("view engine", "pug");
 app.set("views", `${__dirname}/views`);
 
-app.use((req, res, next) => {
-  console.log(req.headers.cookie);
-  next();
-});
 
-// view
 app.use("/", viewRouter);
-
-// app.get("/", (req,res,next) => {
-//QZlvzOa2chvL15rQ
-// })
-
-// resource enpoints
 app.use("/api/v1/dramas", dramaRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/comments", commentRouter);

@@ -1,3 +1,5 @@
 node_modules
-.vscode
-.env
+*.vscode
+config.env
+*.git
+*.cache

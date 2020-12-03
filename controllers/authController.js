@@ -38,7 +38,7 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-  console.log(req.body);
+
   // check if email and password are provided
   if (!req.body.email || !req.body.password) {
     return next(new AppError("Email and password are required!", 500));
@@ -65,7 +65,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   } else if (req.headers.cookie) {
     token = req.headers.cookie.split("=")[1];
-    console.log("The token is ", token);
+
   }
 
   if (!token) {
@@ -129,7 +129,6 @@ exports.isLoggedIn = async (req, res, next) => {
 
   if (req.headers.cookie) {
     token = req.headers.cookie.split("=")[1];
-    console.log("The token is ", token);
   }
 
   if (!token) {
